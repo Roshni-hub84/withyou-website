@@ -1,75 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WithYou</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
 body{
     margin:0;
     font-family: Arial, Helvetica, sans-serif;
-    background:#000;
-    color:white;
-    text-align:center;
+    color:#2c2c2c;
+
+    background: linear-gradient(
+        180deg,
+        #efe9ff 0%,
+        #f7f3ff 40%,
+        #ffffff 100%
+    );
 }
 
 .container{
-    max-width:900px;
+    max-width:1100px;
     margin:auto;
-    padding:80px 20px;
+    padding:60px 20px;
+}
+
+.hero{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.hero-text{
+    max-width:500px;
 }
 
 h1{
-    font-size:48px;
+    font-size:56px;
     margin-bottom:20px;
 }
 
-p{
-    font-size:20px;
-    opacity:0.8;
-}
-
-.wick{
-    width:220px;
-    margin-top:40px;
+.subtitle{
+    font-size:22px;
+    line-height:1.5;
+    opacity:.8;
 }
 
 .button{
     display:inline-block;
-    margin-top:40px;
-    padding:15px 30px;
-    background:#c8a2ff;
-    color:black;
+    margin-top:30px;
+    padding:14px 28px;
     border-radius:30px;
     text-decoration:none;
+    background:#c9a8ff;
+    color:#000;
     font-weight:bold;
+}
+
+.hero img{
+    width:380px;
+}
+
+.section{
+    margin-top:120px;
+}
+
+.section h2{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:40px;
+}
+
+.feature{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+}
+
+.feature img{
+    width:160px;
+}
+
+.feature-text{
+    max-width:400px;
+}
+
+.screenshots{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.screenshots img{
+    width:100%;
+    border-radius:14px;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+
+.footer{
+    text-align:center;
+    margin-top:120px;
+    padding-bottom:40px;
+}
+
+.footer a{
+    margin:0 12px;
+    text-decoration:none;
+    color:#555;
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
+<!-- HERO -->
+
+<div class="hero">
+
+<div class="hero-text">
+
 <h1>WithYou</h1>
 
-<p>A quiet moment to check in with yourself.</p>
-
-<p>Wick is here with you.</p>
-
-<img src="wick.png" class="wick">
-
-<br>
+<div class="subtitle">
+A calm place to check in with yourself.<br>
+Simple tools designed to help you pause and reflect.
+</div>
 
 <a class="button" href="#">
-Download the App
+Explore the Mood App
 </a>
 
 </div>
 
+<img src="images/wick-right.png">
+
+</div>
+
+
+
+<!-- FEATURED APP -->
+
+<div class="section">
+
+<h2>Featured App</h2>
+
+<div class="feature">
+
+<img src="images/moods-app-icon.png">
+
+<div class="feature-text">
+
+<h3>Moods</h3>
+
+<p>
+A gentle way to track how you feel,
+discover patterns, and take a quiet
+moment for reflection with Wick.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- SCREENSHOTS -->
+
+<div class="section">
+
+<h2>Inside the App</h2>
+
+<div class="screenshots">
+
+<img src="screenshots/1.png">
+<img src="screenshots/2.png">
+<img src="screenshots/3.png">
+<img src="screenshots/4.png">
+<img src="screenshots/5.png">
+<img src="screenshots/6.png">
+<img src="screenshots/7.png">
+<img src="screenshots/8.png">
+<img src="screenshots/9.png">
+<img src="screenshots/10.png">
+
+</div>
+
+</div>
+
+
+
+<!-- ABOUT WICK -->
+
+<div class="section feature">
+
+<img src="images/wick-left.png">
+
+<div class="feature-text">
+
+<h2>Meet Wick</h2>
+
+<p>
+Wick is your quiet companion inside WithYou.
+A calm presence designed to help you slow down,
+notice how you feel, and reflect without pressure.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- FUTURE APPS -->
+
+<div class="section">
+
+<h2>More Tools Coming Soon</h2>
+
+<p style="text-align:center; max-width:600px; margin:auto;">
+WithYou is growing into a collection of thoughtful tools
+for reflection, journaling, and personal insight.
+</p>
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<a href="https://sites.google.com/view/withyou-privacy-policy/home" target="_blank">
+Privacy
+</a>
+
+<a href="#">
+Contact
+</a>
+
+<p style="margin-top:20px;">
+© WithYou
+</p>
+
+</div>
+
+
+
+</div>
+
 </body>
+
 </html>

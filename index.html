@@ -140,27 +140,47 @@
       overflow:hidden;
       border-radius:34px;
       box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      align-items:end;
+      padding:38px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.08)),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.10)),
         url("images/hero-banner.png") center/cover no-repeat;
-      display:flex;
-      align-items:center;
     }
 
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(90deg, rgba(255,255,255,.32) 0%, rgba(255,255,255,.14) 34%, rgba(255,255,255,.06) 100%);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,.06) 45%, rgba(255,255,255,.12) 100%);
       pointer-events:none;
+    }
+
+    .hero-wick{
+      position:relative;
+      z-index:1;
+      align-self:end;
+      justify-self:start;
+      display:flex;
+      align-items:flex-end;
+      min-height:100%;
+      padding-left:10px;
+    }
+
+    .hero-wick img{
+      width:min(480px, 100%);
+      object-fit:contain;
+      filter: drop-shadow(0 20px 30px rgba(112, 88, 156, 0.15));
     }
 
     .hero-content{
       position:relative;
       z-index:1;
       width:min(560px, 100%);
-      margin-left:auto;
-      margin-right:44px;
+      justify-self:end;
+      align-self:center;
       padding:34px;
       border:1px solid rgba(255,255,255,.45);
       border-radius:30px;
@@ -254,7 +274,7 @@
 
     .section-card{
       background:var(--panel);
-      border:1px solid rgba(255,255,255,.55);
+      border:1px solid rgba(170,120,255,.40);
       backdrop-filter: blur(12px);
       box-shadow:var(--shadow);
       border-radius:var(--radius-xl);
@@ -311,7 +331,7 @@
     .soft-panel{
       border-radius:var(--radius-lg);
       background:var(--panel-strong);
-      border:1px solid rgba(195,140,255,.35);
+      border:1px solid rgba(170,120,255,.55);
       box-shadow:0 14px 34px rgba(133, 102, 182, 0.12);
       padding:28px;
     }
@@ -340,7 +360,7 @@
       padding:11px 16px;
       border-radius:999px;
       background:linear-gradient(135deg, rgba(255,255,255,.8), rgba(251,239,255,.9));
-      border:1px solid var(--line);
+      border:1px solid rgba(170,120,255,.40);
       color:#5d4a7d;
       font-weight:800;
       font-size:.94rem;
@@ -351,7 +371,7 @@
       border-radius:var(--radius-xl);
       overflow:hidden;
       box-shadow:0 20px 44px rgba(133,102,182,.16);
-      border:1px solid rgba(255,255,255,.7);
+      border:1px solid rgba(170,120,255,.34);
       background:#fff;
     }
 
@@ -405,7 +425,7 @@
       overflow:hidden;
       border-radius:24px;
       background:rgba(255,255,255,.76);
-      border:1px solid rgba(195,140,255,.30);
+      border:1px solid rgba(170,120,255,.55);
       box-shadow:0 18px 38px rgba(136,103,185,.14);
       padding:14px;
     }
@@ -430,7 +450,7 @@
       padding:26px;
       border-radius:24px;
       background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(251,243,255,.82));
-      border:1px solid rgba(255,255,255,.7);
+      border:1px solid rgba(170,120,255,.55);
       box-shadow:0 14px 32px rgba(136,103,185,.12);
     }
 
@@ -460,7 +480,7 @@
       border-radius:32px;
       padding:28px;
       background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(250,242,255,.82));
-      border:1px solid rgba(255,255,255,.68);
+      border:1px solid rgba(170,120,255,.40);
       box-shadow:var(--shadow);
       display:flex;
       flex-wrap:wrap;
@@ -496,6 +516,7 @@
       color:var(--text-soft);
       font-weight:800;
       background:rgba(255,255,255,.62);
+      border:1px solid rgba(170,120,255,.22);
     }
 
     .footer-copy{
@@ -506,20 +527,29 @@
       margin-top:8px;
     }
 
-    @media (max-width:720px){
+    @media (max-width: 980px){
+      .hero{
+        grid-template-columns:1fr;
+        min-height:auto;
+        padding:34px 24px 28px;
+        gap:20px;
+        background-position:center center;
+      }
 
-.hero{
-  min-height:520px;
-  background-position:left center;
-}
+      .hero-wick{
+        justify-self:center;
+        min-height:auto;
+        padding-left:0;
+      }
 
-.hero-content{
-  margin-top:140px;
-  margin-left:auto;
-  margin-right:auto;
-  padding:22px;
-}
-}
+      .hero-wick img{
+        width:min(360px, 88%);
+      }
+
+      .hero-content{
+        justify-self:center;
+        width:min(640px, 100%);
+      }
 
       .about-grid,
       .featured-grid,
@@ -548,13 +578,23 @@
       }
 
       .hero{
-        min-height:auto;
         border-radius:28px;
+        padding:22px 16px 20px;
+        gap:14px;
+        background-position:center center;
+      }
+
+      .hero-wick{
+        justify-content:center;
+      }
+
+      .hero-wick img{
+        width:min(290px, 82vw);
       }
 
       .hero-content{
-        margin:0 16px;
-        padding:24px;
+        width:100%;
+        padding:22px 18px;
       }
 
       .hero h1{
@@ -571,7 +611,6 @@
 
       .section-card{
         padding:22px;
-        border: 1px solid rgba(170,120,255,.40);
       }
 
       .screenshot-grid{
@@ -606,6 +645,10 @@
     <section class="hero-wrap">
       <div class="container">
         <section class="hero">
+          <div class="hero-wick">
+            <img src="images/wick-left.png" alt="Wick the WithYou companion">
+          </div>
+
           <div class="hero-content">
             <div class="hero-kicker">
               <img src="images/bow-lilac.png" alt="">

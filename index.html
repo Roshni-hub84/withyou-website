@@ -1,267 +1,860 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WithYou</title>
 
-<title>WithYou</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
-<style>
+  <style>
+    :root{
+      --bg: #f9f4ff;
+      --bg-soft: #fff9ff;
+      --panel: rgba(255,255,255,0.68);
+      --panel-strong: rgba(255,255,255,0.82);
+      --text: #2d2440;
+      --text-soft: #5d5574;
+      --line: rgba(165, 118, 255, 0.22);
+      --accent: #c38cff;
+      --accent-deep: #9f5cf0;
+      --accent-soft: #efd8ff;
+      --pink-soft: #ffd9ef;
+      --sky-soft: #dff3ff;
+      --shadow: 0 20px 50px rgba(136, 103, 185, 0.16);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
 
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    color:#2c2c2c;
+    *{
+      box-sizing:border-box;
+    }
 
-    background: linear-gradient(
-        180deg,
-        #efe9ff 0%,
-        #f7f3ff 40%,
-        #ffffff 100%
-    );
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:60px 20px;
-}
+    body{
+      margin:0;
+      font-family:'Nunito', Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(201,236,255,.7), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,215,239,.65), transparent 30%),
+        linear-gradient(180deg, #f4f7ff 0%, #fbf3ff 35%, #fff8fd 70%, #ffffff 100%);
+    }
 
-.hero{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:space-between;
-}
+    img{
+      max-width:100%;
+      display:block;
+    }
 
-.hero-text{
-    max-width:500px;
-}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
 
-h1{
-    font-size:56px;
-    margin-bottom:20px;
-}
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
 
-.subtitle{
-    font-size:22px;
-    line-height:1.5;
-    opacity:.8;
-}
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.58);
+      border-bottom:1px solid rgba(255,255,255,0.45);
+    }
 
-.button{
-    display:inline-block;
-    margin-top:30px;
-    padding:14px 28px;
-    border-radius:30px;
-    text-decoration:none;
-    background:#c9a8ff;
-    color:#000;
-    font-weight:bold;
-}
+    .topbar-inner{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
 
-.hero img{
-    width:380px;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      font-size:1.15rem;
+      letter-spacing:.2px;
+    }
 
-.section{
-    margin-top:120px;
-}
+    .brand img{
+      width:34px;
+      height:34px;
+      object-fit:contain;
+      filter: drop-shadow(0 4px 10px rgba(159,92,240,.18));
+    }
 
-.section h2{
-    text-align:center;
-    font-size:36px;
-    margin-bottom:40px;
-}
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:12px;
+    }
 
-.feature{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:center;
-    gap:40px;
-}
+    .nav a{
+      padding:10px 14px;
+      border-radius:999px;
+      color:var(--text-soft);
+      font-weight:700;
+      font-size:.96rem;
+      transition:.2s ease;
+    }
 
-.feature img{
-    width:160px;
-}
+    .nav a:hover{
+      background:rgba(255,255,255,0.65);
+      color:var(--text);
+    }
 
-.feature-text{
-    max-width:400px;
-}
+    .nav .cta-link{
+      background:linear-gradient(135deg, #dca8ff 0%, #b987ff 100%);
+      color:#fff;
+      box-shadow:0 10px 24px rgba(163,110,242,.24);
+    }
 
-.screenshots{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
+    .nav .cta-link:hover{
+      background:linear-gradient(135deg, #d59cff 0%, #ad73ff 100%);
+      color:#fff;
+    }
 
-.screenshots img{
-    width:100%;
-    border-radius:14px;
-    box-shadow:0 6px 20px rgba(0,0,0,.08);
-}
+    .hero-wrap{
+      padding:34px 0 10px;
+    }
 
-.footer{
-    text-align:center;
-    margin-top:120px;
-    padding-bottom:40px;
-}
+    .hero{
+      position:relative;
+      min-height:76vh;
+      overflow:hidden;
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.08)),
+        url("images/hero-banner.png") center/cover no-repeat;
+      display:flex;
+      align-items:center;
+    }
 
-.footer a{
-    margin:0 12px;
-    text-decoration:none;
-    color:#555;
-}
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(255,255,255,.32) 0%, rgba(255,255,255,.14) 34%, rgba(255,255,255,.06) 100%);
+      pointer-events:none;
+    }
 
-</style>
+    .hero-content{
+      position:relative;
+      z-index:1;
+      width:min(560px, 100%);
+      margin-left:auto;
+      margin-right:44px;
+      padding:34px;
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:30px;
+      background:rgba(255,255,255,0.26);
+      backdrop-filter: blur(10px);
+      box-shadow:0 12px 35px rgba(120, 88, 170, 0.12);
+    }
 
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.56);
+      color:#4c4364;
+      font-weight:800;
+      font-size:.92rem;
+    }
+
+    .hero-kicker img{
+      width:18px;
+      height:18px;
+      object-fit:contain;
+    }
+
+    .hero h1{
+      margin:0;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(2.6rem, 5vw, 4.6rem);
+      line-height:0.98;
+      letter-spacing:-1px;
+    }
+
+    .hero .accent-line{
+      width:180px;
+      height:4px;
+      border-radius:999px;
+      margin:18px 0 20px;
+      background:linear-gradient(90deg, #f0b8ff 0%, #c38cff 50%, #9edfff 100%);
+      box-shadow:0 0 18px rgba(195,140,255,.34);
+    }
+
+    .hero p{
+      margin:0;
+      font-size:1.18rem;
+      line-height:1.7;
+      color:#4c4364;
+      font-weight:700;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 24px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:1rem;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg, #d399ff 0%, #a86bff 100%);
+      box-shadow:0 16px 30px rgba(168,107,255,.28);
+    }
+
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(255,255,255,.55);
+    }
+
+    .section{
+      padding:96px 0 0;
+    }
+
+    .section-card{
+      background:var(--panel);
+      border:1px solid rgba(255,255,255,.55);
+      backdrop-filter: blur(12px);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius-xl);
+      padding:34px;
+    }
+
+    .section-head{
+      text-align:center;
+      max-width:760px;
+      margin:0 auto 34px;
+    }
+
+    .section-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+      color:var(--accent-deep);
+      font-size:.95rem;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+
+    .section-kicker img{
+      width:20px;
+      height:20px;
+      object-fit:contain;
+    }
+
+    .section-head h2{
+      margin:0 0 12px;
+      font-family:'Playfair Display', serif;
+      font-size:clamp(2rem, 3.4vw, 3rem);
+      line-height:1.1;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--text-soft);
+      font-size:1.08rem;
+      line-height:1.75;
+      font-weight:700;
+    }
+
+    .about-grid,
+    .featured-grid,
+    .wick-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .soft-panel{
+      border-radius:var(--radius-lg);
+      background:var(--panel-strong);
+      border:1px solid rgba(255,255,255,.62);
+      box-shadow:0 14px 34px rgba(133, 102, 182, 0.12);
+      padding:28px;
+    }
+
+    .soft-panel h3{
+      margin:0 0 12px;
+      font-size:1.45rem;
+      line-height:1.2;
+    }
+
+    .soft-panel p{
+      margin:0;
+      color:var(--text-soft);
+      line-height:1.8;
+      font-weight:700;
+    }
+
+    .pill-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .pill{
+      padding:11px 16px;
+      border-radius:999px;
+      background:linear-gradient(135deg, rgba(255,255,255,.8), rgba(251,239,255,.9));
+      border:1px solid var(--line);
+      color:#5d4a7d;
+      font-weight:800;
+      font-size:.94rem;
+      box-shadow:0 8px 18px rgba(179, 136, 241, 0.08);
+    }
+
+    .preview-art{
+      border-radius:var(--radius-xl);
+      overflow:hidden;
+      box-shadow:0 20px 44px rgba(133,102,182,.16);
+      border:1px solid rgba(255,255,255,.7);
+      background:#fff;
+    }
+
+    .preview-art img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .featured-app{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:18px;
+    }
+
+    .featured-app img{
+      width:86px;
+      height:86px;
+      object-fit:cover;
+      border-radius:24px;
+      box-shadow:0 12px 26px rgba(159,92,240,.18);
+    }
+
+    .featured-app .app-name{
+      font-size:1.75rem;
+      font-weight:900;
+      line-height:1.1;
+    }
+
+    .featured-app .app-sub{
+      color:var(--text-soft);
+      font-weight:700;
+      margin-top:4px;
+    }
+
+    .mini-bow{
+      width:28px;
+      margin-bottom:14px;
+      opacity:.92;
+    }
+
+    .screenshot-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:20px;
+    }
+
+    .shot{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      background:rgba(255,255,255,.76);
+      border:1px solid rgba(255,255,255,.62);
+      box-shadow:0 18px 38px rgba(136,103,185,.14);
+      padding:14px;
+    }
+
+    .shot img{
+      width:100%;
+      border-radius:18px;
+    }
+
+    .shot:hover{
+      transform:translateY(-2px);
+      transition:.18s ease;
+    }
+
+    .future-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:20px;
+    }
+
+    .future-card{
+      padding:26px;
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(251,243,255,.82));
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:0 14px 32px rgba(136,103,185,.12);
+    }
+
+    .future-card img{
+      width:26px;
+      margin-bottom:14px;
+      opacity:.95;
+    }
+
+    .future-card h3{
+      margin:0 0 10px;
+      font-size:1.24rem;
+    }
+
+    .future-card p{
+      margin:0;
+      color:var(--text-soft);
+      line-height:1.75;
+      font-weight:700;
+    }
+
+    .footer{
+      padding:88px 0 40px;
+    }
+
+    .footer-box{
+      border-radius:32px;
+      padding:28px;
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(250,242,255,.82));
+      border:1px solid rgba(255,255,255,.68);
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:18px;
+      align-items:center;
+    }
+
+    .footer-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+      font-size:1.08rem;
+    }
+
+    .footer-left img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+    }
+
+    .footer-links a{
+      padding:10px 14px;
+      border-radius:999px;
+      color:var(--text-soft);
+      font-weight:800;
+      background:rgba(255,255,255,.62);
+    }
+
+    .footer-copy{
+      width:100%;
+      color:var(--text-soft);
+      font-weight:700;
+      text-align:center;
+      margin-top:8px;
+    }
+
+    @media (max-width: 980px){
+      .hero{
+        min-height:auto;
+        padding:34px 0;
+        background-position:left center;
+      }
+
+      .hero-content{
+        width:min(100%, 620px);
+        margin:0 auto;
+      }
+
+      .about-grid,
+      .featured-grid,
+      .wick-grid{
+        grid-template-columns:1fr;
+      }
+
+      .future-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px){
+      .topbar-inner{
+        padding:10px 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .nav{
+        width:100%;
+      }
+
+      .hero-wrap{
+        padding-top:20px;
+      }
+
+      .hero{
+        min-height:auto;
+        border-radius:28px;
+      }
+
+      .hero-content{
+        margin:0 16px;
+        padding:24px;
+      }
+
+      .hero h1{
+        font-size:2.35rem;
+      }
+
+      .hero p{
+        font-size:1.03rem;
+      }
+
+      .section{
+        padding-top:74px;
+      }
+
+      .section-card{
+        padding:22px;
+      }
+
+      .screenshot-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#" class="brand">
+        <img src="images/bow-lilac.png" alt="WithYou bow">
+        <span>WithYou</span>
+      </a>
 
-<div class="container">
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#featured-app">Moods</a>
+        <a href="#screenshots">Screens</a>
+        <a href="#wick">Wick</a>
+        <a href="#future">Coming Soon</a>
+        <a class="cta-link" href="#featured-app">Explore App</a>
+      </nav>
+    </div>
+  </header>
 
-<!-- HERO -->
+  <main>
 
-<div class="hero">
+    <section class="hero-wrap">
+      <div class="container">
+        <section class="hero">
+          <div class="hero-content">
+            <div class="hero-kicker">
+              <img src="images/bow-lilac.png" alt="">
+              Calm tools for reflection
+            </div>
 
-<div class="hero-text">
+            <h1>Welcome to WithYou</h1>
+            <div class="accent-line"></div>
 
-<h1>WithYou</h1>
+            <p>
+              A calm place to check in with yourself.
+              Gentle digital spaces designed to help you pause,
+              reflect, and feel a little more held.
+            </p>
 
-<div class="subtitle">
-A calm place to check in with yourself.<br>
-Simple tools designed to help you pause and reflect.
-</div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#featured-app">Explore the Mood App</a>
+              <a class="btn btn-secondary" href="https://sites.google.com/view/withyou-privacy-policy/home" target="_blank" rel="noopener noreferrer">Privacy</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
 
-<a class="button" href="#">
-Explore the Mood App
-</a>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-kicker">
+              <img src="images/bow-black.png" alt="">
+              The WithYou feeling
+            </div>
+            <h2>Small moments of care, built into the experience</h2>
+            <p>
+              WithYou is a growing brand of gentle tools designed to support reflection,
+              emotional awareness, and calmer digital moments. It begins with Moods,
+              and grows from there.
+            </p>
+          </div>
 
-</div>
+          <div class="about-grid">
+            <div class="soft-panel">
+              <img class="mini-bow" src="images/bow-lilac.png" alt="">
+              <h3>Made to feel warm, not clinical</h3>
+              <p>
+                This space is built around softness, clarity, and emotional ease.
+                Nothing here is meant to rush you, diagnose you, or pressure you.
+                The goal is simple: help you notice yourself with more gentleness.
+              </p>
 
-<img src="images/wick-right.png">
+              <div class="pill-list">
+                <span class="pill">Calm design</span>
+                <span class="pill">Gentle reflection</span>
+                <span class="pill">Wick companion</span>
+                <span class="pill">Future tools ahead</span>
+              </div>
+            </div>
 
-</div>
+            <div class="preview-art">
+              <img src="images/withyou_feature_graphic.png" alt="WithYou feature graphic">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="section" id="featured-app">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-kicker">
+              <img src="images/bow-lilac.png" alt="">
+              Featured app
+            </div>
+            <h2>Moods</h2>
+            <p>
+              A gentle mood-tracking experience with Wick by your side —
+              designed to help you check in, reflect softly, and notice patterns over time.
+            </p>
+          </div>
 
+          <div class="featured-grid">
+            <div class="soft-panel">
+              <div class="featured-app">
+                <img src="images/moods-app-icon.png" alt="Moods app icon">
+                <div>
+                  <div class="app-name">Moods</div>
+                  <div class="app-sub">The first app in the WithYou world</div>
+                </div>
+              </div>
 
-<!-- FEATURED APP -->
+              <img class="mini-bow" src="images/bow-black.png" alt="">
+              <h3>Track how you feel without pressure</h3>
+              <p>
+                Moods helps you pause, name what’s happening inside, and gently explore
+                your emotional patterns. With reflective prompts, calm visuals, and
+                Wick’s comforting presence, the experience is designed to feel safe and supportive.
+              </p>
 
-<div class="section">
+              <div class="pill-list">
+                <span class="pill">Check-ins</span>
+                <span class="pill">Insights</span>
+                <span class="pill">History</span>
+                <span class="pill">Gentle reminders</span>
+              </div>
+            </div>
 
-<h2>Featured App</h2>
+            <div class="preview-art">
+              <img src="screenshots/10.png" alt="Moods app home screen">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="feature">
+    <section class="section" id="screenshots">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-kicker">
+              <img src="images/bow-black.png" alt="">
+              Inside the app
+            </div>
+            <h2>A softer kind of interface</h2>
+            <p>
+              A look at the emotional flow inside Moods — from check-ins and insights
+              to reflection prompts, comforting moments, and Wick-led guidance.
+            </p>
+          </div>
 
-<img src="images/moods-app-icon.png">
+          <div class="screenshot-grid">
+            <div class="shot"><img src="screenshots/1.png" alt="Track how you feel in seconds"></div>
+            <div class="shot"><img src="screenshots/2.png" alt="Capture how you feel"></div>
+            <div class="shot"><img src="screenshots/3.png" alt="Explore what's happening inside"></div>
+            <div class="shot"><img src="screenshots/4.png" alt="Take a moment for yourself"></div>
+            <div class="shot"><img src="screenshots/5.png" alt="Your story your pace"></div>
+            <div class="shot"><img src="screenshots/6.png" alt="Understand your patterns"></div>
+            <div class="shot"><img src="screenshots/7.png" alt="Meet Wick your calm companion"></div>
+            <div class="shot"><img src="screenshots/8.png" alt="Gentle reminders when you need them"></div>
+            <div class="shot"><img src="screenshots/9.png" alt="A calm place to reflect"></div>
+            <div class="shot"><img src="screenshots/10.png" alt="You're not alone"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<div class="feature-text">
+    <section class="section" id="wick">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-kicker">
+              <img src="images/bow-lilac.png" alt="">
+              Meet Wick
+            </div>
+            <h2>Your calm companion in the WithYou space</h2>
+            <p>
+              Wick is part of what makes the experience feel warm and personal —
+              not just a mascot, but a gentle presence woven into the emotional tone of the app.
+            </p>
+          </div>
 
-<h3>Moods</h3>
+          <div class="wick-grid">
+            <div class="preview-art">
+              <img src="images/wick-left.png" alt="Wick illustration">
+            </div>
 
-<p>
-A gentle way to track how you feel,
-discover patterns, and take a quiet
-moment for reflection with Wick.
-</p>
+            <div class="soft-panel">
+              <img class="mini-bow" src="images/bow-lilac.png" alt="">
+              <h3>Comfort, softness, and quiet encouragement</h3>
+              <p>
+                Wick helps shape the feeling of WithYou: friendly, comforting, and never overwhelming.
+                From the first welcome screen to gentle reminders and reflective moments,
+                Wick’s role is to make the space feel emotionally safe.
+              </p>
 
-</div>
+              <div class="pill-list">
+                <span class="pill">Kind presence</span>
+                <span class="pill">Supportive tone</span>
+                <span class="pill">Companion energy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="section" id="future">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div class="section-kicker">
+              <img src="images/bow-black.png" alt="">
+              Looking ahead
+            </div>
+            <h2>More WithYou tools are planned</h2>
+            <p>
+              Moods is only the beginning. WithYou is being shaped as a broader home
+              for thoughtful apps that support reflection, gentle routine-building, and emotional care.
+            </p>
+          </div>
 
-</div>
+          <div class="future-grid">
+            <div class="future-card">
+              <img src="images/bow-lilac.png" alt="">
+              <h3>Journal</h3>
+              <p>
+                A space for writing, soft reflection, and emotional expression without pressure.
+              </p>
+            </div>
 
+            <div class="future-card">
+              <img src="images/bow-black.png" alt="">
+              <h3>Habits</h3>
+              <p>
+                Gentle structure for routines that support wellbeing, clarity, and steadier days.
+              </p>
+            </div>
 
+            <div class="future-card">
+              <img src="images/bow-lilac.png" alt="">
+              <h3>WithYou Journal</h3>
+              <p>
+                A future blog and update space for the brand story, design notes, and reflections behind the apps.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- SCREENSHOTS -->
+  </main>
 
-<div class="section">
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-box">
+        <div class="footer-left">
+          <img src="images/bow-lilac.png" alt="WithYou bow">
+          <span>WithYou</span>
+        </div>
 
-<h2>Inside the App</h2>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#featured-app">Moods</a>
+          <a href="#screenshots">Screens</a>
+          <a href="https://sites.google.com/view/withyou-privacy-policy/home" target="_blank" rel="noopener noreferrer">Privacy</a>
+        </div>
 
-<div class="screenshots">
-
-<img src="screenshots/1.png">
-<img src="screenshots/2.png">
-<img src="screenshots/3.png">
-<img src="screenshots/4.png">
-<img src="screenshots/5.png">
-<img src="screenshots/6.png">
-<img src="screenshots/7.png">
-<img src="screenshots/8.png">
-<img src="screenshots/9.png">
-<img src="screenshots/10.png">
-
-</div>
-
-</div>
-
-
-
-<!-- ABOUT WICK -->
-
-<div class="section feature">
-
-<img src="images/wick-left.png">
-
-<div class="feature-text">
-
-<h2>Meet Wick</h2>
-
-<p>
-Wick is your quiet companion inside WithYou.
-A calm presence designed to help you slow down,
-notice how you feel, and reflect without pressure.
-</p>
-
-</div>
-
-</div>
-
-
-
-<!-- FUTURE APPS -->
-
-<div class="section">
-
-<h2>More Tools Coming Soon</h2>
-
-<p style="text-align:center; max-width:600px; margin:auto;">
-WithYou is growing into a collection of thoughtful tools
-for reflection, journaling, and personal insight.
-</p>
-
-</div>
-
-
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-<a href="https://sites.google.com/view/withyou-privacy-policy/home" target="_blank">
-Privacy
-</a>
-
-<a href="#">
-Contact
-</a>
-
-<p style="margin-top:20px;">
-© WithYou
-</p>
-
-</div>
-
-
-
-</div>
+        <div class="footer-copy">
+          © WithYou
+        </div>
+      </div>
+    </div>
+  </footer>
 
 </body>
-
 </html>
